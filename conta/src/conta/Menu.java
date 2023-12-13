@@ -1,5 +1,7 @@
 package conta;
 
+import conta.util.Colors;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -11,7 +13,8 @@ public class Menu {
         int option;
 
         while(true) {
-            System.out.println("*****************************************************");
+            System.out.println(Colors.TEXT_YELLOW + Colors.ANSI_BLACK_BACKGROUND
+                            + "*****************************************************");
             System.out.println("                                                     ");
             System.out.println("                BANCO DO BRAZIL COM Z                ");
             System.out.println("                                                     ");
