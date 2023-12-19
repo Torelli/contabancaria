@@ -1,19 +1,20 @@
 package conta;
 
-import conta.model.Conta;
 import conta.model.ContaCorrente;
 import conta.model.ContaPoupanca;
-import conta.util.Colors;
+import conta.util.Cores;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
 
-    public static Scanner input = new Scanner(System.in);
+    public static Scanner leia = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        int option;
+        int opcao;
 
         // Teste da Classe Conta Corrente
         ContaCorrente cc1 = new ContaCorrente(1, 123, 1, "José da Silva", 0.0f, 1000.0f);
@@ -32,7 +33,7 @@ public class Menu {
         cp1.visualizar();
 
         while(true) {
-            System.out.println(Colors.TEXT_YELLOW + Colors.ANSI_BLACK_BACKGROUND
+            System.out.println(Cores.TEXT_YELLOW + Cores.ANSI_BLACK_BACKGROUND
                             + "*****************************************************");
             System.out.println("                                                     ");
             System.out.println("                BANCO DO BRAZIL COM Z                ");
@@ -53,50 +54,66 @@ public class Menu {
             System.out.println("Entre com a opção desejada:                          ");
             System.out.println("                                                     ");
 
-            option = input.nextInt();
+            try {
+                opcao = leia.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("\nDigite os valores inteiros!");
+                leia.nextLine();
+                opcao = 0;
+            }
 
-            if(option == 9) {
+
+            if(opcao == 9) {
                 System.out.println("\nBanco do Brazil com Z - O seu futuro começa aqui!");
                 about();
-                input.close();
+                leia.close();
                 System.exit(0);
             }
 
-            switch (option) {
+            switch (opcao) {
                 case 1:
                     System.out.println("Criar Conta \n\n");
 
+                    keyPress();
                     break;
                 case 2:
                     System.out.println("Listar todas as Contas \n\n");
 
+                    keyPress();
                     break;
                 case 3:
                     System.out.println("Consultar dados da Conta - por número\n\n");
 
+                    keyPress();
                     break;
                 case 4:
                     System.out.println("Atualizar dados da conta\n\n");
 
+                    keyPress();
                     break;
                 case 5:
                     System.out.println("Apagar a Conta\n\n");
 
+                    keyPress();
                     break;
                 case 6:
                     System.out.println("Saque\n\n");
 
+                    keyPress();
                     break;
                 case 7:
                     System.out.println("Depósito\n\n");
 
+                    keyPress();
                     break;
                 case 8:
                     System.out.println("Transferência entre Contas\n\n");
 
+                    keyPress();
                     break;
                 default:
-                    System.out.printf("\nOpção Inválida!\n");
+                    System.out.printf(Cores.TEXT_RED_BOLD + "\nOpção inválida!\n" + Cores.TEXT_RESET);
+                    keyPress();
                     break;
             }
         }
@@ -108,5 +125,14 @@ public class Menu {
         System.out.println("Email - giovanni.walter@outlook.com");
         System.out.println("https://github.com/Torelli");
         System.out.println("*********************************************************");
+    }
+
+    public static void keyPress() {
+        try {
+            System.out.println(Cores.TEXT_RESET + "\nPressione Enter para continuar...");
+            System.in.read();
+        } catch (IOException e) {
+            System.out.println("Você pressionou uma tecla diferente de enter!");
+        }
     }
 }
